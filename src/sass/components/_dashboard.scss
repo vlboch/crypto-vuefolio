@@ -1,0 +1,27 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard__header {
+    display: flex;
+    margin-top: 4rem;
+}
+
+.dashboard__content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.dashboard__left {
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 0.6;
+    flex-flow: column nowrap;
+}
+
+.dashboard__right {
+    display: flex;
+    flex-grow: 0.35;
+}

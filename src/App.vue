@@ -1,9 +1,17 @@
 <template>
-  <div class="box">
+  <div class="content">
+    <dashboard />
   </div>
 </template>
-<script></script>
+<script>
+import Dashboard from "@/components/Dashboard.vue";
+export default {
+  components: {
+    Dashboard,
+  },
+};
+</script>
 
-<style lang="sass">
-
+<style lang="scss">
+@import "@/sass/main.scss";
 </style>
