@@ -11,20 +11,38 @@
 }
 
 .coin-list-item__logo {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
-  background: $text-gray;
   margin-right: 1rem;
+  background-image: url("https://www.cryptocompare.com/media/37747700/twt.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.coin-list-item__label {
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.coin-list-item__price {
+  font-size: 0.7rem;
+  color: $text-gray;
 }
 
 .coin-list-item__right {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
 }
 
 .coin-list-item__ammount {
+  line-height: 1.35;
+  font-weight: 600;
+  font-size: 18px;
+  background: -webkit-linear-gradient(0deg, $primary, $secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .coin-list-item__usd {
   font-size: 0.7rem;

@@ -20,3 +20,14 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.coin-list-item__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.coin-list-item__button {
+  margin-left: 1rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+}

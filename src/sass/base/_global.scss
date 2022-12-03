@@ -1,7 +1,7 @@
 body {
   font-family: "Poppins", sans-serif;
   color: $text;
-  background-color: $light-gray;
+  background-color: $bg;
 }
 
 .content {
@@ -16,8 +16,31 @@ body {
   transition: 250ms all;
 }
 
+.btn__content_text {
+  padding: 11px 15px 11px 15px;
+  border-radius: 10px;
+}
+
+.btn__content_text i {
+  margin-right: 0.25rem;
+}
+
 .btn_content_icon:hover {
   color: $primary;
+}
+
+.btn__bg_light-purple {
+  background-color: $light-purple;
+  color: $primary;
+}
+
+.btn__bg_purple {
+  background: linear-gradient(135deg, #ae27a5, #742cb2);
+  color: white;
+}
+
+.btn__content_text:hover {
+  filter: brightness(115%);
 }
 
 .card {
