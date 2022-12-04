@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import Dashboard from "@/components/Dashboard.vue";
+import Dashboard from '@/components/Dashboard.vue';
 export default {
   components: {
     Dashboard,
@@ -13,5 +13,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/sass/main.scss";
+@import '@/sass/main.scss';
 </style>

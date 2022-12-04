@@ -4,8 +4,7 @@
       <div
         v-for="i in 5"
         :key="i"
-        class="assets-card__list-item coin-list-item"
-      >
+        class="assets-card__list-item coin-list-item">
         <div class="coin-list-item__left">
           <div class="coin-list-item__logo"></div>
           <div class="coin-list-item__details">
@@ -22,14 +21,12 @@
 
           <div class="coin-list-item__buttons">
             <button
-              class="btn btn__content_text btn__bg_light-purple coin-list-item__button"
-            >
+              class="btn btn__content_text btn__bg_light-purple coin-list-item__button">
               <i class="fa-solid fa-plus"></i>
               Add
             </button>
             <button
-              class="btn btn__content_text btn__bg_purple coin-list-item__button"
-            >
+              class="btn btn__content_text btn__bg_purple coin-list-item__button">
               <i class="fa-solid fa-trash"></i>
               Remove
             </button>
@@ -43,7 +40,9 @@
 </template>
 
 <script>
-import AddAssetBtn from "@/components/AddAssetBtn.vue";
+import AddAssetBtn from '@/components/AddAssetBtn.vue';
+
+import { someFun } from '@/api/api.js';
 export default {
   components: {
     AddAssetBtn,
@@ -53,11 +52,15 @@ export default {
     return {
       tokenList: [
         {
-          name: "TWT",
+          name: 'TWT',
           ammount: 100,
-        }
-      ]
-    }
-  }
+        },
+      ],
+    };
+  },
+
+  created() {
+    someFun();
+  },
 };
 </script>
