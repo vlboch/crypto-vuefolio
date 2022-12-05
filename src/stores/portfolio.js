@@ -6,14 +6,32 @@ export const usePortfolioStore = defineStore('portfolio', {
     return {
       assets: [
         {
-          currencySym: 'SOL',
-          ammount: 1.4,
-          avgPrice: 17000,
+          currencySym: 'REEF',
+          ammount: 3000,
+          avgPrice: 0.6,
           currentPrice: 0,
         },
         {
-          currencySym: 'DOGE',
-          ammount: 1300,
+          currencySym: 'SHIB',
+          ammount: 3000,
+          avgPrice: 0.6,
+          currentPrice: 0,
+        },
+        {
+          currencySym: 'LUNC',
+          ammount: 3000,
+          avgPrice: 0.6,
+          currentPrice: 0,
+        },
+        {
+          currencySym: '1INCH',
+          ammount: 3000,
+          avgPrice: 0.6,
+          currentPrice: 0,
+        },
+        {
+          currencySym: 'TWT',
+          ammount: 3000,
           avgPrice: 0.6,
           currentPrice: 0,
         },

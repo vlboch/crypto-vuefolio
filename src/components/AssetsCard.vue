@@ -6,7 +6,9 @@
         :key="item.currencySym"
         class="assets-card__list-item coin-list-item">
         <div class="coin-list-item__left">
-          <div class="coin-list-item__logo"></div>
+          <div
+            class="coin-list-item__logo"
+            :style="{ backgroundImage: getCoinImage(item.currencySym) }"></div>
           <div class="coin-list-item__details">
             <div class="coin-list-item__label">{{ item.currencySym }}</div>
             <div class="coin-list-item__price">
@@ -21,7 +23,9 @@
             <div class="coin-list-item__usd">
               ~
               {{
-                item.currentPrice ? (item.currentPrice * item.ammount).toFixed(2) : 'N/A'
+                item.currentPrice
+                  ? (item.currentPrice * item.ammount).toFixed(2)
+                  : 'N/A'
               }}$
             </div>
           </div>
@@ -50,6 +54,7 @@
 import AddAssetBtn from '@/components/AddAssetBtn.vue'
 import { usePortfolioStore } from '@/stores/portfolio'
 import { mapState, mapActions } from 'pinia'
+import { getCoinlist } from '@/api/api'
 
 export default {
   components: {
@@ -62,9 +67,20 @@ export default {
 
   methods: {
     ...mapActions(usePortfolioStore, ['fetchActualPrices']),
+
+    getCoinImage(sym) {
+      if (!this.coinlist) return null
+
+      const coin = this.coinlist[sym]
+
+      if (!coin) return null
+
+      return `url(https://www.cryptocompare.com${coin.ImageUrl})`
+    },
   },
 
-  mounted() {
+  async mounted() {
+    this.coinlist = await getCoinlist()
     this.fetchActualPrices()
   },
 }

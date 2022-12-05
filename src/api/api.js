@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const KEY = import.meta.env.VITE_API_KEY
-const REST_API_URL = 'https://min-api.cryptocompare.com/data/pricemulti'
+axios.defaults.baseURL = 'https://min-api.cryptocompare.com/data'
 
 export const getCurrentPrices = async (currencyesList) => {
-  const fetchedPrices = await axios.get(REST_API_URL, {
+  const fetchedPrices = await axios.get('/pricemulti', {
     params: {
       fsyms: currencyesList.join(','),
       tsyms: 'USD',
@@ -12,8 +12,7 @@ export const getCurrentPrices = async (currencyesList) => {
     },
   })
 
-  const pricesData = await fetchedPrices.data
-
+  const pricesData = fetchedPrices.data
   const prices = {}
 
   currencyesList.forEach((currency) => {
@@ -24,4 +23,8 @@ export const getCurrentPrices = async (currencyesList) => {
   return prices
 }
 
+export const getCoinlist = async () => {
+  const coinlist = await axios.get('/all/coinlist')
 
+  return coinlist.data.Data
+}
