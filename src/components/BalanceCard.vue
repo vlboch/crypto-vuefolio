@@ -6,14 +6,16 @@
         <i class="fa-solid fa-eye-slash"></i>
       </button>
     </div>
-    <div class="balance-card__value">250,34 USD</div>
+    <div class="balance-card__value">{{ totalValue.toFixed(2) }} USD</div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'pinia'
+import { usePortfolioStore } from '@/stores/portfolio'
 export default {
-  props: {
-    balanceValue: Number,
+  computed: {
+    ...mapState(usePortfolioStore, ['totalValue']),
   },
-};
+}
 </script>
