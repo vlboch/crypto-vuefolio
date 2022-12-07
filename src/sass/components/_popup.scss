@@ -1,0 +1,55 @@
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup__content {
+  z-index: 999;
+}
+
+.popup__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $bg;
+  opacity: 0.8;
+  backdrop-filter: blur(100px);
+}
+
+.popup-modal {
+  width: 500px;
+  padding: 35px 40px;
+}
+
+.popup-modal__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.popup-modal__header {
+  display: flex;
+  padding-bottom: 1rem;
+  width: 100%;
+}
+
+.popup-modal__main-content {
+  padding: 1rem 0rem;
+  height: 200px;
+}
+
+.popup-modal__controls {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: start;
+  gap: 15px;
+}
