@@ -1,0 +1,11 @@
+.add-asset-form {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.add-asset-form__wrapper {
+  display: flex;
+  gap: 1rem;
+}

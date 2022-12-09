@@ -52,6 +52,8 @@ body {
   padding: 1rem 1.5rem 1rem 1.5rem;
 }
 
+
+// INPUT
 .input-box {
   font-size: 0.938rem;
   position: relative;
@@ -97,6 +99,7 @@ body {
   position: absolute;
   background: white;
   border-radius: 15px;
+  z-index: 999;
 }
 
 .suggestion-item {
@@ -115,6 +118,13 @@ body {
 .suggestion-item__img {
   width: 35px;
   margin-right: 7px;
+	width: 35px;
+	height: 35px;
+	background-color: $light-gray;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+	border-radius: 50%;
 }
 
 .suggestion-item__title {

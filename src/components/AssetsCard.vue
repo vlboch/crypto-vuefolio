@@ -1,5 +1,5 @@
 <template>
-  <div class="assets-card card">
+  <div v-if="computedAssets.length > 0" class="assets-card card">
     <div class="assets-card__list">
       <div
         v-for="item in computedAssets"

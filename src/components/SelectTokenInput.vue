@@ -20,12 +20,14 @@
     <div v-if="isOptionsVisible" class="input-box__suggestion-list">
       <div
         v-for="item in suggestionsList"
-        :key="item.Id"
+        :key="item['Symbol']"
         class="input-box__suggestion-list-item suggestion-item"
         @click="selectItemHandler(item)">
-        <img
+        <div
           class="suggestion-item__img"
-          :src="`https://www.cryptocompare.com/${item['ImageUrl']}`" />
+          :style="{
+            backgroundImage: `url(https://www.cryptocompare.com/${item['ImageUrl']}) !important`,
+          }"></div>
         <strong class="suggestion-item__title"> {{ item['Symbol'] }} </strong>
       </div>
     </div>
@@ -41,12 +43,13 @@ export default {
       isOptionsVisible: false,
       selectedItemName: 'BTC',
       selectedItemImage: 'https://www.cryptocompare.com/media/37746251/btc.png',
+      isCoinListLoaded: false,
     }
   },
 
   computed: {
     suggestionsList() {
-      if (!this.coinlist || this.selectedItemName.length === 0) return
+      if (!this.isCoinListLoaded || this.selectedItemName.length === 0) return
 
       return Object.keys(this.coinlist)
         .filter((key) =>
@@ -86,6 +89,7 @@ export default {
 
   async mounted() {
     this.coinlist = await getCoinlist()
+    this.isCoinListLoaded = true
   },
 }
 </script>
