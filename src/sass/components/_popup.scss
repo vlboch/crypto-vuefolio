@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .popup__content {
@@ -22,6 +23,7 @@
   background-color: $bg;
   opacity: 0.8;
   backdrop-filter: blur(100px);
+  overflow: hidden;
 }
 
 .popup-modal {
@@ -44,7 +46,6 @@
 
 .popup-modal__main-content {
   padding: 1rem 0rem;
-  height: 200px;
 }
 
 .popup-modal__controls {

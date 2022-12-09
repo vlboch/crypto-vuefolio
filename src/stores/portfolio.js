@@ -7,7 +7,7 @@ export const usePortfolioStore = defineStore('portfolio', {
     return {
       assets: [
         {
-          sym: 'REEF',
+          sym: 'BTC',
           ammount: 3000,
           avgPrice: 0.6,
           currentPrice: 0,

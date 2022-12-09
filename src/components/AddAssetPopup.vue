@@ -6,29 +6,7 @@
 
     <template v-slot:content>
       <div class="add-asset-form">
-
-        <vue-autosuggest
-          :suggestions="[
-            {
-              data: [
-                'Frodo',
-                'Samwise',
-                'Gandalf',
-                'Galadriel',
-                'Faramir',
-                'Éowyn',
-              ],
-            },
-          ]"
-          :input-props="{
-            id: 'autosuggest__input',
-            placeholder: 'Do you feel lucky, punk?',
-          }"
-          @input="onInputChange"
-          @selected="selectHandler"
-          @click="clickHandler">
-        </vue-autosuggest>
-
+        <select-token-input />
       </div>
     </template>
 
@@ -44,19 +22,15 @@
 <script>
 import { VueAutosuggest } from 'vue-autosuggest'
 import PopupBase from '@/components/PopupBase.vue'
+import SelectTokenInput from '@/components/SelectTokenInput.vue'
 export default {
   components: {
     PopupBase,
     VueAutosuggest,
+    SelectTokenInput
   },
   props: {
     isOpened: Boolean,
-  },
-
-  data() {
-    return {
-      coins: ['hi', 'lol', 'loh'],
-    }
   },
 
   emits: ['closePopup'],
