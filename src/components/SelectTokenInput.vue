@@ -1,19 +1,19 @@
 <template>
   <div class="input-box">
-    <label for="token" class="input-box__label">Select token</label>
+    <label class="input-box__label" for="token">Select token</label>
     <input
+      class="input-box__input"
       name="token"
       type="text"
       placeholder="Token"
-      class="input-box__input"
-      v-model="selectedItemName"
+      :value="modelValue"
       :class="{
-        'input-box__input_pre-image': selectedItemImage,
+        'input-box__input_pre-image': !!selectedPreImage,
       }"
       :style="{
-        backgroundImage: `url(${selectedItemImage})`,
+        backgroundImage: `url(${selectedPreImage})`,
       }"
-      @input="valueChanged"
+      @input="updateValue($event.target.value)"
       @focus="inputFocused"
       @blur="inputBlured" />
 
@@ -26,7 +26,7 @@
         <div
           class="suggestion-item__img"
           :style="{
-            backgroundImage: `url(https://www.cryptocompare.com/${item['ImageUrl']}) !important`,
+            backgroundImage: `url(${getCoinLogoImageUrl(item['ImageUrl'])})`,
           }"></div>
         <strong class="suggestion-item__title"> {{ item['Symbol'] }} </strong>
       </div>
@@ -35,39 +35,55 @@
 </template>
 
 <script>
-import { getCoinlist } from '@/api/api'
+import { getCoinlist, getCoinLogoImageUrl } from '@/api/api'
 export default {
+  props: {
+    modelValue: {
+      type: String,
+    },
+  },
+
   data() {
     return {
       isInputFocused: false,
       isOptionsVisible: false,
-      selectedItemName: 'BTC',
-      selectedItemImage: 'https://www.cryptocompare.com/media/37746251/btc.png',
       isCoinListLoaded: false,
     }
   },
 
   computed: {
     suggestionsList() {
-      if (!this.isCoinListLoaded || this.selectedItemName.length === 0) return
+      if (!this.isCoinListLoaded || this.modelValue.length === 0) return
 
       return Object.keys(this.coinlist)
         .filter((key) =>
-          key.toLowerCase().includes(this.selectedItemName.toLowerCase())
+          key.toLowerCase().includes(this.modelValue.toLowerCase())
         )
-        .sort((a, b) => a.length > this.selectedItemName.length)
+        .sort((a) => a.length > this.modelValue.length)
         .slice(0, 4)
         .map((key) => this.coinlist[key])
+    },
+
+    selectedPreImage() {
+      if (
+        !this.isCoinListLoaded ||
+        this.isInputFocused ||
+        this.modelValue.length === 0 ||
+        !this.coinlist[this.modelValue] ||
+        !this.coinlist[this.modelValue].ImageUrl
+      )
+        return false
+
+      return getCoinLogoImageUrl(this.coinlist[this.modelValue].ImageUrl)
     },
   },
 
   methods: {
+    getCoinLogoImageUrl,
+
     inputFocused() {
       this.isInputFocused = true
       this.isOptionsVisible = true
-
-      this.selectedItemName = ''
-      this.selectedItemImage = null
     },
 
     inputBlured() {
@@ -78,12 +94,12 @@ export default {
       }, 100)
     },
 
-    valueChanged(e) {},
+    updateValue(newValue) {
+      this.$emit('update:modelValue', newValue)
+    },
 
     selectItemHandler(item) {
-      this.selectedItemName = item['Symbol']
-      this.selectedItemImage =
-        'https://www.cryptocompare.com' + item['ImageUrl']
+      this.$emit('update:modelValue', item['Symbol'])
     },
   },
 

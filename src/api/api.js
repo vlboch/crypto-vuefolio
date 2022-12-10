@@ -30,3 +30,7 @@ export const getCoinlist = async () => {
 
   return coinlist.data.Data
 }
+
+export const getCoinLogoImageUrl = (path) => {
+  return ['https://www.cryptocompare.com', path].join('')
+}

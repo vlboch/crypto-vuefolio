@@ -6,7 +6,7 @@
 
     <template v-slot:content>
       <div class="add-asset-form">
-        <select-token-input />
+        <select-token-input v-model="selectedToken" />
 
         <div class="add-asset-form__wrapper">
           <div class="input-box">
@@ -53,13 +53,11 @@
 </template>
 
 <script>
-import { VueAutosuggest } from 'vue-autosuggest'
 import PopupBase from '@/components/PopupBase.vue'
 import SelectTokenInput from '@/components/SelectTokenInput.vue'
 export default {
   components: {
     PopupBase,
-    VueAutosuggest,
     SelectTokenInput,
   },
   props: {
@@ -71,7 +69,7 @@ export default {
     return {
       ammountOfCoins: 0,
       pricePerCoin: 0,
-      selectedToken: null,
+      selectedToken: "ETH",
     }
   },
 
