@@ -5,38 +5,7 @@ import { calcAvgPrice } from '@/utils/utils'
 export const usePortfolioStore = defineStore('portfolio', {
   state: () => {
     return {
-      assets: [
-        {
-          sym: 'DOGE',
-          ammount: 990,
-          avgPrice: 0.07,
-          currentPrice: 0,
-        },
-        {
-          sym: 'SHIB',
-          ammount: 3000,
-          avgPrice: 0.6,
-          currentPrice: 0,
-        },
-        {
-          sym: 'LUNC',
-          ammount: 3000,
-          avgPrice: 0.6,
-          currentPrice: 0,
-        },
-        {
-          sym: '1INCH',
-          ammount: 3000,
-          avgPrice: 0.6,
-          currentPrice: 0,
-        },
-        {
-          sym: 'TWT',
-          ammount: 3000,
-          avgPrice: 0.6,
-          currentPrice: 0,
-        },
-      ],
+      assets: [],
     }
   },
 
@@ -79,6 +48,7 @@ export const usePortfolioStore = defineStore('portfolio', {
 
     removeAsset(sym) {
       this.assets = this.assets.filter((c) => c.sym !== sym)
+      this.setLocalStorageAssets()
     },
 
     appendAsset(newAsset) {
@@ -86,16 +56,29 @@ export const usePortfolioStore = defineStore('portfolio', {
 
       if (!asset) {
         this.assets.push(newAsset)
-        return this.fetchActualPrices()
       }
 
-      asset.avgPrice = calcAvgPrice([
-        [asset.ammount, asset.avgPrice],
-        [newAsset.ammount, newAsset.avgPrice],
-      ])
+      if (asset) {
+        asset.avgPrice = calcAvgPrice([
+          [asset.ammount, asset.avgPrice],
+          [newAsset.ammount, newAsset.avgPrice],
+        ])
 
-      asset.ammount += newAsset.ammount
+        console.log(asset.ammount, newAsset.ammount)
+        asset.ammount += newAsset.ammount
+      }
+
+      this.fetchActualPrices()
+      this.setLocalStorageAssets()
+    },
+
+    setLocalStorageAssets() {
+      localStorage.setItem('assetsList', JSON.stringify(this.assets))
+    },
+
+    initStorageAssets() {
+      this.assets = JSON.parse(localStorage.getItem('assetsList'))
+      this.fetchActualPrices()
     },
   },
 })
-

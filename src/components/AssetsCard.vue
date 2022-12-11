@@ -49,6 +49,7 @@
   </div>
 
   <add-asset-popup
+    v-if="isAddAssetModal"
     :isOpened="isAddAssetModal"
     @closePopup="isAddAssetModal = false" />
   <add-asset-btn @click="addAssetBtnHandler" />
@@ -58,7 +59,7 @@
 import AddAssetBtn from '@/components/AddAssetBtn.vue'
 import AddAssetPopup from '@/components/AddAssetPopup.vue'
 import { usePortfolioStore } from '@/stores/portfolio'
-import { mapState, mapActions, mapGetters } from 'pinia'
+import { mapActions, mapGetters } from 'pinia'
 import { getCoinlist } from '@/api/api'
 
 export default {

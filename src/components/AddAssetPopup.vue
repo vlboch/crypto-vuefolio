@@ -42,7 +42,11 @@
     </template>
 
     <template v-slot:controls>
-      <button class="btn btn__content_text btn__bg_purple">Add</button>
+      <button
+        class="btn btn__content_text btn__bg_purple"
+        @click="addAssetClickHandler">
+        Add
+      </button>
       <button
         class="btn btn__content_text btn__bg_light-purple"
         @click="closePopup">
@@ -55,6 +59,9 @@
 <script>
 import PopupBase from '@/components/PopupBase.vue'
 import SelectTokenInput from '@/components/SelectTokenInput.vue'
+import { getCoinlist } from '@/api/api'
+import { mapActions } from 'pinia'
+import { usePortfolioStore } from '@/stores/portfolio'
 export default {
   components: {
     PopupBase,
@@ -67,9 +74,9 @@ export default {
 
   data() {
     return {
+      selectedToken: 'ETH',
       ammountOfCoins: 0,
       pricePerCoin: 0,
-      selectedToken: "ETH",
     }
   },
 
@@ -80,8 +87,28 @@ export default {
   },
 
   methods: {
+    ...mapActions(usePortfolioStore, ['appendAsset']),
+
     closePopup() {
       this.$emit('closePopup')
+    },
+
+    async addAssetClickHandler() {
+      if (this.selectedToken.length === 0) return
+
+      this.coinlist = await getCoinlist()
+
+      let tokenObj = this.coinlist[this.selectedToken]
+
+      if (!tokenObj) return
+
+      this.appendAsset({
+        sym: this.selectedToken,
+        avgPrice: this.pricePerCoin,
+        ammount: this.ammountOfCoins,
+      })
+
+      this.closePopup()
     },
   },
 }
