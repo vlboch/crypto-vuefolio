@@ -27,5 +27,9 @@ export default {
   computed: {
     ...mapState(usePortfolioStore, ['totalValue', 'totalProfitLoss']),
   },
+
+  created() {
+    console.log(this.message)
+  }
 }
 </script>

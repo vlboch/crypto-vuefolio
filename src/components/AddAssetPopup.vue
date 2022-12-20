@@ -6,6 +6,14 @@
 
     <template v-slot:content>
       <div class="add-asset-form">
+        <tabs
+          v-model="selectedTab"
+          :tabs="[
+            { text: 'Sell', value: 'sell' },
+            { text: 'Buy', value: 'buy' },
+          ]">
+        </tabs>
+
         <select-token-input v-model="selectedToken" />
 
         <div class="add-asset-form__wrapper">
@@ -59,6 +67,7 @@
 <script>
 import PopupBase from '@/components/PopupBase.vue'
 import SelectTokenInput from '@/components/SelectTokenInput.vue'
+import Tabs from '@/components/Tabs.vue'
 import { getCoinlist } from '@/api/api'
 import { mapActions } from 'pinia'
 import { usePortfolioStore } from '@/stores/portfolio'
@@ -66,6 +75,7 @@ export default {
   components: {
     PopupBase,
     SelectTokenInput,
+    Tabs,
   },
   props: {
     isOpened: Boolean,
@@ -77,6 +87,7 @@ export default {
       selectedToken: 'ETH',
       ammountOfCoins: 0,
       pricePerCoin: 0,
+      selectedTab: 'sell',
     }
   },
 

@@ -1,0 +1,34 @@
+.tabs {
+	height: 48px;
+	background-color: $bg;
+	overflow: hidden;
+	border-radius: 15px;
+}
+
+.tabs__wrapper {
+	height: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.tabs__wrapper__tab {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	border-radius: 15px;
+	transition: 250ms all;
+}
+
+.tabs__wrapper__tab:hover {
+	background-color: #d6d2df;
+}
+
+.tabs__wrapper__tab_active,
+.tabs__wrapper__tab_active:hover {
+	background-color: #7a2bb1;
+	color: $bg;
+}

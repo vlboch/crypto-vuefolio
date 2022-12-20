@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: $text;
   background-color: $bg;
 }
@@ -52,3 +52,8 @@ body {
   padding: 1rem 1.5rem 1rem 1.5rem;
 }
 
+@media screen and (min-width: 1400px) {
+  .content {
+    padding: 0 15rem 0 15rem;
+  }
+}

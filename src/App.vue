@@ -14,8 +14,20 @@ export default {
     Dashboard,
   },
 
+  data() {
+    return {
+      test: 'a',
+    }
+  },
+
   methods: {
     ...mapActions(usePortfolioStore, ['initStorageAssets']),
+  },
+
+  computed: {
+    someValue() {
+      return this.test
+    },
   },
 
   async mounted() {

@@ -77,7 +77,7 @@ export const usePortfolioStore = defineStore('portfolio', {
     },
 
     initStorageAssets() {
-      this.assets = JSON.parse(localStorage.getItem('assetsList'))
+      this.assets = JSON.parse(localStorage.getItem('assetsList')) || []
       this.fetchActualPrices()
     },
   },
